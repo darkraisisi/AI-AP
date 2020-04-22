@@ -11,6 +11,7 @@ public class Garden {
     private double nutrients = 10;
 
     private ArrayList<Plant> plantedCrops = new ArrayList<>();
+    private ArrayList<Animal> presentAnimals = new ArrayList<>();
 
     public Garden(double longitude, double latitude, float length, float width) {
         this.longitude = longitude;
@@ -90,5 +91,17 @@ public class Garden {
 
     public Plant getPlant(int i) {
         return this.plantedCrops.get(i);
+    }
+
+    public void addAnimal(Animal animal){
+        this.presentAnimals.add(animal);
+    }
+
+    public ArrayList<Animal> getAnimals(){
+        return this.presentAnimals;
+    }
+
+    public Animal getAnimal(int i) {
+        return this.presentAnimals.get(i);
     }
 }

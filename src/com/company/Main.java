@@ -16,6 +16,10 @@ public class Main {
         myGarden.setNutrients(myGarden.getPlant(0).grow(myGarden.getNutrients()));
         System.out.println(myGarden.toString());
         System.out.println(myGarden.getPlantedCrops().toString());
+
+        Bug wormBoi1 = new Bug("Worm",true, false);
+        myGarden.addAnimal(wormBoi1);
+        System.out.println(myGarden.getAnimals().toString());
     }
 }
 
