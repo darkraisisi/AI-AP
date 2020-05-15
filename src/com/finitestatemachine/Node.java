@@ -1,8 +1,10 @@
 package com.finitestatemachine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Node {
+//    abstract class to help handle the 2 different type of nodes
     protected String name;
 
     public Node(String name){
@@ -13,9 +15,7 @@ public abstract class Node {
         return this.name;
     };
 
-    public abstract void addConnection(ArrayList<WeightedConnection> array) throws Exception;
-
     public abstract boolean isEndpoint();
-    public abstract Node next(Double number);
-    public abstract Node generateNetwork(Integer amountOfNodes) throws Exception;
+    public abstract Node next(String number);
+    public abstract void generateNetwork(HashMap<String,HashMap<String,String>> connectionMap) throws Exception;
 }

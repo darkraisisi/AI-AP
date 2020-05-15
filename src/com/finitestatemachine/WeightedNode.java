@@ -5,15 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WeightedNode extends Node {
-    private HashMap<Double, WeightedNode> connections = new HashMap<>();
-    private boolean endpoint;
+    public HashMap<Double, WeightedNode> connections = new HashMap<>();
+    public boolean endpoint;
 
     WeightedNode(String name, boolean endpoint){
         super(name);
         this.endpoint = endpoint;
     }
-
-    @Override
+//get an array of weighted connections and asses the weights, add the weights to a total and store them in order for easy checking
     public void addConnection(ArrayList<WeightedConnection> array) throws Exception {
         double tempTotal = 0;
         for ( WeightedConnection connection:array) {
@@ -31,11 +30,15 @@ public class WeightedNode extends Node {
         return this.endpoint;
     }
 
+
     @Override
-    public WeightedNode next(Double number) {
+    public WeightedNode next(String _number) {
+        Double number = Double.valueOf(_number);
         WeightedNode n = null;
+        // go through all the connections in order of key size(amount of chance)
         for (Map.Entry<Double, WeightedNode> connection : this.connections.entrySet()) {
             n = connection.getValue();
+// if the current value is lower then the key in question, attatched node is corrosponding chance
             if(number <= connection.getKey()){
                 return connection.getValue();
             }
@@ -44,16 +47,17 @@ public class WeightedNode extends Node {
     }
 
     @Override
-    public Node generateNetwork(Integer amountOfNodes) throws Exception {
-        Double weight = 1.0 / amountOfNodes;
+    public void generateNetwork(HashMap<String,HashMap<String,String>> connectionMap) throws Exception {
+//Put a networktogether by looking connecting all the needed nodes to this current node
+        Double weight = 1.0 / connectionMap.size();
+//The hashmap is a limitation of using the abstractsuperclass, get the size from it(the amount of needed new nodes)
         ArrayList<WeightedConnection> connections = new ArrayList<>();
-
-        for (int i = 1; i <= amountOfNodes; i++) {
-            WeightedNode node = new WeightedNode(Integer.toString(i),true);
+        for (Map.Entry<String,HashMap<String,String>> _node : connectionMap.entrySet()) {
+//            run through the names and weights given in the call and assign them to a WeightedConnection and put those in an array for this.addConneciton
+            WeightedNode node = new WeightedNode(_node.getKey(),true);
             connections.add(new WeightedConnection(weight,node));
         }
         this.addConnection(connections);
-        return this;
     }
 
 

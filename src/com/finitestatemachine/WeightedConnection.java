@@ -1,7 +1,7 @@
 package com.finitestatemachine;
 import com.finitestatemachine.WeightedNode;
 
-public class WeightedConnection {
+public class WeightedConnection extends Connection{
     Double weight;
     WeightedNode node;
 
