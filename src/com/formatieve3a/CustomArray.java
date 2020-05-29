@@ -22,11 +22,11 @@ public class CustomArray<T> implements Comparable<T>{
             list.add(input);
 
         }else{
-            if(list.get(0).compareTo(input) > 0){
-                list.add(0,input);
-            }else{
-                list.add(1,input);
-            }
+//            if(list.get(0).compareTo(input) > 0){
+//                list.add(0,input);
+//            }else{
+//                list.add(1,input);
+//            }
         }
 
     }
