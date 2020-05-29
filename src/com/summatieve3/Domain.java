@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Domain {
+// Source https://www.baeldung.com/java-dijkstra
     Domain(String sourceName){
         this.sourceName = sourceName;
     }
